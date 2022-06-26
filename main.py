@@ -21,7 +21,7 @@ op.add_argument("--disable-dev-sh-usage")
 
 def access_Web():
     #driver = webdriver.Chrome(service=Service("chromedriver.exe"), options=chrome_options)
-    driver=webdriver.Chrome(excutable_path=os.environ.get('CHROMEDRIVER_PATH'),chrome_options=op)
+    driver=webdriver.Chrome(executable_path=os.environ.get('CHROMEDRIVER_PATH'),chrome_options=op)
     driver.get('https://hdtoday.tv/home')
 
     content = driver.page_source
