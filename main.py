@@ -49,7 +49,7 @@ def Movies(message):
         images = poster.find('img')
         print(images['data-src'])
         img = requests.get(images['data-src'])
-
+        #importtant
         print(the_one['title'] + ' ' + quality.text)
         bot.send_message(message.chat.id, the_one['title'] + ' ' + quality.text)
         bot.send_photo(message.chat.id, img.content)
