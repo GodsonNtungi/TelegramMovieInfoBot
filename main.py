@@ -3,7 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import os
 from dotenv import load_dotenv
-from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
 import telebot
 import requests
@@ -13,10 +12,15 @@ API_KEY = os.getenv('API_KEY')
 bot = telebot.TeleBot(API_KEY)
 chrome_options = Options()
 chrome_options.binary_location = 'C:/Program Files/Google/Chrome/Application/chrome.exe'
-
+op = webdriver.ChromeOptions()
+op.binary_location = os.environ.get('GOOGLE_CHROME_BIN')
+op.add_argument("--headless")
+op.add_argument('--no-sandbox')
+op.add_argument("--disable-dev-sh-usage")
 
 def access_Web():
-    driver = webdriver.Chrome(service=Service("chromedriver.exe"), options=chrome_options)
+    #driver = webdriver.Chrome(service=Service("chromedriver.exe"), options=chrome_options)
+    driver=webdriver.Chrome(excutable_path=os.environ.get('CHROMEDRIVER_PATH'),chrome_options=op)
     driver.get('https://hdtoday.tv/home')
 
     content = driver.page_source
